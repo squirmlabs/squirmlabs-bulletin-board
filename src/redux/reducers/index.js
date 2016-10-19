@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import requests from './Requests';
+import search from './SearchResults';
 
 export default combineReducers({
-  requests,
+  search,
 });

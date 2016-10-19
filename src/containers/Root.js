@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
-import AppContainer from './AppContainer';
 import Routes from '../routes';
 import { Router, browserHistory } from 'react-router';
 

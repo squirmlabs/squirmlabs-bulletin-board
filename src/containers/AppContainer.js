@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import AppContent from './AppContent';
+import SearchBar from '../component/search/SearchBar';
+import SearchResults from '../component/search/SearchResults';
 import * as Actions from '../redux/actions';
 import bootstrapStyles from '../libs/jquery/bootstrap/dist/css/bootstrap.less';
 import appStyles from '../static/css/app.less';
@@ -32,9 +34,14 @@ class AppContainer extends Component {
     } = this.props;
 
     return (
-      <AppContent actions={actions} results={results}>
-        {this.props.children}
-      </AppContent>
+      <div>
+        <SearchBar />
+        <SearchResults />
+        <AppContent actions={actions} results={results}>
+          {this.props.children}
+        </AppContent>
+
+      </div>
     );
   }
 }

@@ -3,76 +3,73 @@ import { Col, Row, Accordion, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as Actions from '../../redux/actions/index';
 import { Router, Route, Link, browserHistory } from 'react-router'
-import Rx from 'rxjs';
-import ResultsColumn from './results/column/ResultsColumn';
-import bootstrapStyles from '../../libs/jquery/bootstrap/dist/css/bootstrap.less';
-import appStyles from '../../libs/css/app.less';
+import ResultCard from './card/ResultsCard';
+import SearchResutsStyles from './SearchResutsStyles.less';
 
 class SearchResults extends Component {
-  static propTypes = {
-    games: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
-  };
-
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
   componentWillMount() {
-    // this.props.fetchEvent(event);
-    // this.props.fetchGames();
-    // this.props.fetchRequests();
+    this.props.instagramSearchTags('diplo');
+    SearchResutsStyles.use();
   }
-  componentDidMount() {
-    bootstrapStyles.use();
-    appStyles.use();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // this.setState({
-    //
-    // })
-  }
-
   componentWillUnmount() {
-    bootstrapStyles.unuse();
-    appStyles.unuse();
+    SearchResutsStyles.unuse();
   }
+  renderCard(cardData) {
+    // Each entry in the list should include:
+    // A thumbnail of the post (should link to actual post)
+    // The username (with a link to user profile)
+    // A list of hashtags
+    // The caption
+    // Number of likes
+    const key = cardData.id;
+    const createdDate = cardData.created_time;
+    const profilePicture = cardData.profile_picture;
+    const username = cardData.username;
+    const captionDate = cardData.caption.created_time;
+    const captionText = cardData.caption.text;
+    const captionUsername = cardData.caption.from.username;
+    const captionUserId = cardData.caption.from.id;
+    const likeCount = cardData.likes.count;
+    const atoms = {
+      key,
+      createdDate,
+      profilePicture,
+      username,
+      captionDate,
+      captionText,
+      captionUsername,
+      captionUserId,
+      likeCount,
+    }
 
-  handleSubmit(data) {
-    // this.props.setTwitchToken(data.token);
-    // this.props.setInfluencer(data.influencerName);
-    // this.props.setActivated(data.isActivated);
-    // this.props.authenticated(true);
-  }
-
-  handleViewRender() {
-    // return <SearchForm handleSubmit={this.handleSubmit} />;
+    return (
+      <div key={key}>
+        <ResultCard {...atoms} />
+      </div>
+    );
   }
 
   render() {
     return (
       <div className="md-whiteframe-z0 bg-white">
-        <ResultsColumn />
+        <div className="cards">
+          Cards go here
+          {this.props.results.map(this.renderCards)}
+        </div>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ results }) {
   return {
-    games: state.games,
-    requests: state.requests,
-    auth: state.auth,
+    results,
   };
 }
 
 export default connect(mapStateToProps, Actions)(SearchResults);
 
 SearchResults.propTypes = {
-  setTwitchToken: PropTypes.func,
-  setInfluencer: PropTypes.func,
-  setActivated: PropTypes.func,
-  authenticated: PropTypes.func,
+
 };
 
