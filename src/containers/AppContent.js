@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 // import model from './model';
-import appStyles from '../static/css/app.less';
 
 export default class AppContainer extends Component {
   constructor(props) {
@@ -9,15 +8,6 @@ export default class AppContainer extends Component {
       isSearchVisible: null,
     };
   }
-
-  componentDidMount() {
-    appStyles.use();
-  }
-
-  componentWillUnmount() {
-    appStyles.unuse();
-  }
-
   render() {
     const { state } = this;
 

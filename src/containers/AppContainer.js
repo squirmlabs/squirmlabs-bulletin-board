@@ -3,6 +3,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import AppContent from './AppContent';
 import * as Actions from '../redux/actions';
+import bootstrapStyles from '../libs/jquery/bootstrap/dist/css/bootstrap.less';
+import appStyles from '../static/css/app.less';
+// import appStyles from '../../libs/css/app.less';
+
 
 class AppContainer extends Component {
 
@@ -10,6 +14,17 @@ class AppContainer extends Component {
     results: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
   }
+
+  componentDidMount() {
+    bootstrapStyles.use();
+    appStyles.use();
+  }
+
+  componentWillUnmount() {
+    bootstrapStyles.unuse();
+    appStyles.unuse();
+  }
+
   render() {
     const {
       results,
