@@ -4,8 +4,13 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import createLogger from 'redux-logger'
 
+// const thunk = (store) => (next) => (action) =>
+//   typeof action === 'function' ?
+//   action(store.dispatch) :
+//   next(action);
 
-const middleware = [thunk, promise];
+
+const middleware = [promise, thunk, ];
 
 if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger());

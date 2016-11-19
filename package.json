@@ -1,7 +1,7 @@
 {
-  "name": "squirmlabs-user-search",
+  "name": "squirmlabs-bulletin-board",
   "version": "1.0.0",
-  "description": "React, Node, RXJS SPA that uses visualizes data from Instagram's API. Web app that takes a search parameter from the user and displays the results below",
+  "description": "",
   "scripts": {
     "start": "NODE_ENV=development ./bin/start.sh",
     "build": "NODE_ENV=production ./bin/build.sh",
@@ -83,6 +83,7 @@
     "toolbox-loader": "0.0.3",
     "url-loader": "0.5.7",
     "webpack": "1.13.1",
+    "webpack-dashboard": "^0.2.0",
     "webpack-dev-middleware": "^1.7.0",
     "webpack-dev-server": "1.14.1",
     "webpack-hot-middleware": "^2.12.2",
@@ -108,6 +109,7 @@
     "react-addons-css-transition-group": "^15.3.1",
     "react-addons-update": "^15.3.1",
     "react-bootstrap": "^0.30.0",
+    "react-css-themr": "^1.4.1",
     "react-dom": "^15.1.0",
     "react-redux": "^4.0.0",
     "react-router": "^2.0.0-rc5",

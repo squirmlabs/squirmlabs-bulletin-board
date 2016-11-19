@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import * as actions from '../../redux/actions';
+import * as Actions from '../../redux/actions';
+import SearchBar from '../search/SearchBar';
 
 class AppHeader extends Component {
-
   render() {
     return (
       <nav className="navbar md-whiteframe-z1 no-radius">
+        <SearchBar onSearchTermChange={instagramTagSearch} />
         <a className="navbar-item pull-left visible-xs visible-sm">
           <i className="mdi-navigation-menu i-24"></i>
         </a>
@@ -41,4 +42,4 @@ function mapStatetoProps(state) {
   return { authenticated: state.authenticated };
 }
 
-export default connect(mapStatetoProps, actions)(AppHeader);
+export default connect(mapStatetoProps, Actions)(AppHeader);

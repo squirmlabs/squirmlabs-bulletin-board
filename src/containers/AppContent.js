@@ -1,7 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 // import model from './model';
 
 export default class AppContainer extends Component {
+  static propTypes = {
+    search: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
+  }
+
   constructor(props) {
     super(props);
     this.state = {

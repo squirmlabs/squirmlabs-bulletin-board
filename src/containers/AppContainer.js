@@ -1,55 +1,62 @@
 import React, { Component, PropTypes } from 'react';
+import _  from 'lodash';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import AppContent from './AppContent';
-import SearchBar from '../component/search/SearchBar';
 import SearchResults from '../component/search/SearchResults';
-import * as Actions from '../redux/actions';
-import bootstrapStyles from '../libs/jquery/bootstrap/dist/css/bootstrap.less';
-import appStyles from '../static/css/app.less';
-// import appStyles from '../../libs/css/app.less';
+import SearchBar from '../component/search/SearchBar';
+import { instagramSearchTags, recieveSearchResults } from '../redux/actions';
+// import appStyles from '../static/css/app.less';
+import UserModal from '../component/user/modal/';
+import ChatModal from '../component/chat/modal/';
+import appStyles from '../libs/css/app.less';
 
 
 class AppContainer extends Component {
 
-  static propTypes = {
-    results: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
-  }
 
   componentDidMount() {
-    bootstrapStyles.use();
+    // bootstrapStyles.use();
     appStyles.use();
   }
 
   componentWillUnmount() {
-    bootstrapStyles.unuse();
+    // bootstrapStyles.unuse();
     appStyles.unuse();
   }
 
-  render() {
-    const {
-      results,
-      actions
-    } = this.props;
+  instagramTagSearch(term) {
+    const { recieveSearchResults } = this.props;
+    return _.debounce((term) => {
+      this.props.fetchInstagramTags(term)
+      .then(results => this.props.recieveSearchResults(results))
+    }, 300);
+  }
 
+  render() {
     return (
       <div>
-        <SearchBar />
-        <SearchResults />
-        <AppContent actions={actions} results={results}>
-          {this.props.children}
-        </AppContent>
-
+        <div id="content" className="app-content" role="main">
+          <div className="box">
+            <SearchBar onSearchTermChange={this.instagramTagSearch} />
+            <div className="box-row">
+              <div className="box-cell">
+                <div className="box-inner padding">
+                  <SearchResults />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <UserModal />
+        <ChatModal />
       </div>
     );
   }
 }
-export default connect(
-  state => ({
-    results: state.results,
-  }),
-  dispatch => ({
-    actions: bindActionCreators(Actions, dispatch)
-  })
-)(AppContainer)
+const mapStateToProps = (state) => ({
+  search: state.search,
+})
+
+// Connect PostsIndex with state using mapStatetoProps
+export default connect(mapStateToProps, { instagramSearchTags, recieveSearchResults })(AppContainer);

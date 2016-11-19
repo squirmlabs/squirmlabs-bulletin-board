@@ -1,13 +1,13 @@
 
-# squirmlabs-user-search
+# squirmlabs-bulletin-board
 
-Squirmlabs - Instagram API Search
+Squirmlabs - Bulletin Board
 ================================
 
 Overview
 --------
 
-React.js, RXJS, Node.js, SPA that visualizes data from Instagram's API. Web app that takes a search parameter from the user and displays the results below. A composition of React.js components to build the page.
+Overview goes here....
 
 ### Technologies Involved
 
@@ -51,16 +51,7 @@ Create an archive of `NPM package`:
 $ npm pack
 ~~~
 
-Will produce a `squirmlabs-user-search-x.x.x.tgz` file in that directory.
+Will produce a `squirmlabs-bulletin-board-x.x.x.tgz` file in that directory.
 
 ---
-
-
-### API Endpoints
-
-Here is a list of the various endpoints (and sample JSON) to retrieve / manage data for
-the influencer requests and active bounties:
-
-*
-*
 

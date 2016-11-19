@@ -41,7 +41,7 @@ export default class Aside extends Component {
     };
 
     return (
-      <div id="aside" className={`app-aside md-sidenav md-sidenav-left md-closed ${this.state.isFolded}`}>
+      <div id="aside" className={`app-aside modal fade ${this.state.isFolded}`}>
         <div className="box">
           <div className="navbar md-whiteframe-z1 no-radius sq-brand">
             <a className="navbar-brand">

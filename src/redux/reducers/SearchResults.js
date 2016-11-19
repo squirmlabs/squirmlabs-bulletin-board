@@ -4,7 +4,6 @@ const INITIAL_STATE = { results: [] };
 
 const actionsMap = {
   [ActionTypes.IG_SEARCH_TAGS](state, action) {
-    console.log('IG_SEARCH_TAGS action', action.payload)
     return {
       ...state, results: [
         {
@@ -22,7 +21,10 @@ const actionsMap = {
         },
       ]
     };
-  }
+  },
+  [ActionTypes.RECIEVE_SEARCH_RESULTS](state, action) {
+    return action.response.data;
+  },
 }
 
 export default function requests(state = INITIAL_STATE, action) {

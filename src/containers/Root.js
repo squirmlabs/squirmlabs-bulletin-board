@@ -4,7 +4,7 @@ import Routes from '../routes';
 import { Router, browserHistory } from 'react-router';
 
 const bootstrapWebpack = require('bootstrap-webpack!./bootstrap.config.js');
-const fontawesome = require('font-awesome/css/font-awesome.css');
+// const fontawesome = require('font-awesome/css/font-awesome.css');
 
 export default class Root extends Component {
 
