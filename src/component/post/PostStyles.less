@@ -1,50 +1,52 @@
-div.note {
-  height: 200px;
-  width: 200px;
-  background-color: #FFDA8E;
-  /*x`x: ;background-color: #EC9BB8;*/
-  border: solid 1px rgba(0, 0, 0, .061);
+.note {
+  min-height: 100px;
+  min-width: 200px;
+  border: solid 1px rgba(0, 0, 0, 0.061);
   color: #414141;
   margin: 2px 0;
   position: relative;
   cursor: -webkit-grab;
-  -webkit-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, .2);
-  box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, .2);
-}
+  -webkit-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px 30px;
+  text-align: center;
 
-div.note:active {
-  cursor: -webkit-grabbing;
-}
 
-div.note p {
-  font-size: 18px;
-  padding: 30px;
-  font-family: "Roboto", Arial;
-}
-
-div.note:hover > span {
-  opacity: 1;
-}
-
-div.note > span {
-  position: absolute;
-  bottom: 2px;
-  right: 2px;
-  opacity: 0;
-  transition: opacity .25s linear;
-}
-
-div.note button {
-  margin: 2px;
-}
-
-div.note > textarea {
-  height: 75%;
-  background: rgba(255, 255, 255, .5);
-}
-
-.glyphicon-plus {
-  position: fixed;
-  top: 10px;
-  right: 10px;
+  &:active {
+    cursor: -webkit-grabbing;
+  }
+  p {
+    font-size: 18px;
+    padding: 30px;
+    font-family: "Roboto", Arial;
+  }
+  &:hover > span {
+    opacity: 1;
+  }
+  > span {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    opacity: 0;
+    transition: opacity .25s linear;
+  }
+  button {
+    margin: 2px;
+  }
+  > textarea {
+    height: 75%;
+    background: rgba(255, 255, 255, .5);
+  }
+  &.front {
+    background-color: #FFDA8E;
+  }
+  &.back {
+  }
+  .handle {
+    padding-bottom: 10px;
+    border-bottom: solid 2px #414141;
+    margin-bottom: 10px;
+  }
 }

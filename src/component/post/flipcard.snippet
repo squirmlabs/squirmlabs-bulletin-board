@@ -1,0 +1,18 @@
+<FlipCard
+  disabled={true}
+  flipped={this.state.isFlipped}
+  onFlip={this.handleOnFlip}
+  onKeyDown={this.handleKeyDown}
+>
+  <div className="note front" style={this.style} onClick={this.showBack}>
+    <div className="handle">{postResult.title}</div>
+    <div className="content">{postResult.categories}</div>
+    <button type="button">Show back</button>
+  </div>
+
+  <div className="note back" style={this.style} onClick={this.showFront}>
+    <div>Back</div>
+    <button type="button" ref="backButton" onClick={this.showFront}>Show front</button>
+  </div>
+
+</FlipCard>

@@ -9,7 +9,7 @@ class AppBar extends Component {
   }
   render() {
     return (
-      <div className="navbar no-radius indigo">
+      <div className="navbar no-radius indigo-500">
         <div className="navbar-item pull-left h4">Bulletin Board</div>
         <div className="text-xs-right navbar-item pull-right">
           <Link to="/posts/new" className="btn btn-primary">

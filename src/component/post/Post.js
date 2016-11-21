@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Col, Row, Accordion, Panel } from 'react-bootstrap';
 import { Link } from 'react-router';
 import $ from 'jquery';
 import PostStyles from './PostStyles.less';
 import Draggable from 'react-draggable';
-window.jQuery = window.$ = $;
-require('velocity-animate');
+import FlipCard from '../flipcard/FlipCard';
+
 
 class Post extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isFlipped: false,
+    }
+
+    this.showBack = this.showBack.bind(this);
+    this.showFront = this.showFront.bind(this);
+    this.handleOnFlip = this.handleOnFlip.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   componentWillMount() {
@@ -19,8 +28,8 @@ class Post extends Component {
   }
 
   componentDidMount() {
+    window.jQuery = window.$ = $;
     PostStyles.use();
-
   }
   shouldComponentUpdate(nextProps, nextState) {
     return (true);
@@ -32,6 +41,30 @@ class Post extends Component {
 
   randomBetween(min, max) {
     return (min + Math.ceil(Math.random() * max));
+  }
+
+  showBack() {
+    this.setState({
+      isFlipped: true
+    });
+  }
+
+  showFront() {
+    this.setState({
+      isFlipped: false
+    });
+  }
+
+  handleOnFlip(flipped) {
+    if (flipped) {
+
+    }
+  }
+
+  handleKeyDown(e) {
+    if (this.state.isFlipped && e.keyCode === 27) {
+      this.showFront();
+    }
   }
 
   render() {
@@ -48,12 +81,23 @@ class Post extends Component {
         onStop={this.handleStop}
       >
         <Col sm={4} sm={4} md={3} lg={3}>
-          <div className="note" style={this.style}>
-            <div className="handle">{postResult.title}</div>
-            <Link to={'posts/' + postResult.id}>
-              <span className="pull-xs-right">{postResult.categories}</span>
-            </Link>
-          </div>
+          <FlipCard
+            disabled={true}
+            flipped={this.state.isFlipped}
+            onFlip={this.handleOnFlip}
+            onKeyDown={this.handleKeyDown}
+          >
+            <div className="note front" style={this.style}>
+              <div className="handle">{postResult.title}</div>
+              <div className="content" onClick={this.showBack}>{postResult.categories}</div>
+            </div>
+
+            <div className="note back blue-200" style={this.style} onClick={this.showFront}>
+              <div>Back</div>
+            </div>
+
+          </FlipCard>
+
         </Col>
       </Draggable>
 
