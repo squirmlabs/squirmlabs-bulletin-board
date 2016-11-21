@@ -3,35 +3,69 @@ import axios from 'axios';
 import * as ActionTypes from '../constants/ActionTypes';
 import * as APIEndpoints from '../constants/Endpoints';
 
-export const requestSearchResults = () => ({
-  type: 'REQUEST_SEARCH_RESULTS',
+export const requestedPosts = () => ({
+  type: ActionTypes.REQUESTED_POSTS,
 })
 
-export const recieveSearchResults = (response) => {
+export const createdPost = () => ({
+  type: ActionTypes.CREATED_POST,
+})
 
-  console.log('RESPONSE', response)
+export const fetchedPost = () => ({
+  type: ActionTypes.FETCHED_POST,
+})
+
+export const deletedPost = () => ({
+  type: ActionTypes.DELETED_POST,
+})
+
+export const recievedPosts = (response) => {
   return {
-    type: 'RECIEVE_SEARCH_RESULTS',
+    type: ActionTypes.RECIEVED_POSTS,
     response,
   }
 }
 
-export const fetchInstagramTags = (search) => (dispatch) => {
-  dispatch(requestSearchResults);
+export const recievedPost = (response) => {
+  console.log('RESPONSE', response)
+  return {
+    type: ActionTypes.RECIEVED_POST,
+    response,
+  }
+}
+export const deleted = (response) => {
+  return {
+    type: ActionTypes.DELETED,
+    response,
+  }
+}
 
-  return axios.get(`${APIEndpoints.API_HOST}${APIEndpoints.URI_TAGS}${search}`)
+export const requestPosts = () => (dispatch) => {
+  dispatch(requestedPosts);
+  return axios.get(`${APIEndpoints.POSTS_URL}${APIEndpoints.KEY}`)
   .then(results => {
-    dispatch(recieveSearchResults(results));
+    dispatch(recievedPosts(results));
   });
 };
-// export const fetchInstagramTags = (search) => (dispatch) => {
-//   dispatch(requestSearchResults);
-//
-//   return axios.get(`${APIEndpoints.API_HOST}${APIEndpoints.URI_TAGS}${search}`)
-//   .then(results => dispatch({
-//     type: ActionTypes.IG_SEARCH_TAGS,
-//     payload: results
-//   }));
-// }
 
-// create array of cached searches
+export const createPost = (props) => (dispatch) => {
+  dispatch(createdPost);
+  return axios.post(`${APIEndpoints.POSTS_URL}${APIEndpoints.KEY}`, props);
+};
+
+
+export const fetchPost = (id) => (dispatch) => {
+  dispatch(fetchedPost);
+  return axios.get(`${APIEndpoints.POSTS_URL}/${id}${APIEndpoints.KEY}`)
+  .then(results => {
+    dispatch(recievedPost(results));
+  });
+}
+
+export const deletePost = (id) => (dispatch) => {
+  dispatch(deletedPost);
+  return axios.delete(`${APIEndpoints.POSTS_URL}/${id}${APIEndpoints.KEY}`)
+  .then(results => {
+    dispatch(deleted(results));
+  });
+}

@@ -1,0 +1,50 @@
+div.note {
+  height: 200px;
+  width: 200px;
+  background-color: #FFDA8E;
+  /*x`x: ;background-color: #EC9BB8;*/
+  border: solid 1px rgba(0, 0, 0, .061);
+  color: #414141;
+  margin: 2px 0;
+  position: relative;
+  cursor: -webkit-grab;
+  -webkit-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, .2);
+  box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, .2);
+}
+
+div.note:active {
+  cursor: -webkit-grabbing;
+}
+
+div.note p {
+  font-size: 18px;
+  padding: 30px;
+  font-family: "Roboto", Arial;
+}
+
+div.note:hover > span {
+  opacity: 1;
+}
+
+div.note > span {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  opacity: 0;
+  transition: opacity .25s linear;
+}
+
+div.note button {
+  margin: 2px;
+}
+
+div.note > textarea {
+  height: 75%;
+  background: rgba(255, 255, 255, .5);
+}
+
+.glyphicon-plus {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}

@@ -1,16 +1,7 @@
-export const FETCH_BOUNTIES = 'FETCH_BOUNTIES';
-export const FETCH_GAMES = 'FETCH_GAMES';
-export const FETCH_GAME = 'FETCH_GAME';
-export const FETCH_REQUESTS = 'FETCH_REQUESTS';
-export const FETCH_REQUEST = 'FETCH_REQUEST';
-export const FETCH_TAGS = 'FETCH_TAGS';
-
-export const AUTH_CHANGE = 'AUTH_CHANGE';
-export const SET_TWITCHTOKEN = 'SET_TWITCHTOKEN';
-export const SET_INFLUENCER = 'SET_INFLUENCER';
-export const SET_ACTIVATED = 'SET_ACTIVATED';
-
-export const FETCH_POSTS = 'FETCH_POSTS';
-export const IG_SEARCH_TAGS = 'IG_SEARCH_TAGS';
-export const RECIEVE_SEARCH_RESULTS = 'RECIEVE_SEARCH_RESULTS';
-
+export const REQUESTED_POSTS = 'REQUESTED_POSTS';
+export const CREATED_POST = 'CREATED_POST';
+export const FETCHED_POST = 'FETCHED_POST';
+export const RECIEVED_POSTS = 'RECIEVED_POSTS';
+export const RECIEVED_POST = 'RECIEVED_POST';
+export const DELETED_POST = 'DELETED_POST';
+export const DELETED = 'DELETED';

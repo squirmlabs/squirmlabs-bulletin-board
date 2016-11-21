@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import Routes from '../routes';
 import { Router, browserHistory } from 'react-router';
 
-const bootstrapWebpack = require('bootstrap-webpack!./bootstrap.config.js');
+const bootstrapWebpack = require('bootstrap-webpack!./config/bootstrap.config.js');
 // const fontawesome = require('font-awesome/css/font-awesome.css');
 
 export default class Root extends Component {
