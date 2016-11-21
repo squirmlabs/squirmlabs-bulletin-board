@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 import $ from 'jquery';
 import PostStyles from './PostStyles.less';
 import Draggable from 'react-draggable';
+window.jQuery = window.$ = $;
+require('velocity-animate');
 
 class Post extends Component {
   constructor(props) {
@@ -18,6 +20,7 @@ class Post extends Component {
 
   componentDidMount() {
     PostStyles.use();
+
   }
   shouldComponentUpdate(nextProps, nextState) {
     return (true);

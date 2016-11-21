@@ -16,10 +16,6 @@ class AppContainer extends Component {
     appStyles.unuse();
   }
 
-  flip() {
-    this.setState({ flipped: !this.state.flipped });
-  }
-
   render() {
     return (
       <div>

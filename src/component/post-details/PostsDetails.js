@@ -29,16 +29,12 @@ class PostsDetails extends Component {
   onDeleteClick() {
     this.props.deletePost(this.props.params.id)
       .then(() => {
-        // blog post has been deleted, navigate the user to the index
-        // navigate by calling this.context.router.push with the new path
-        // to navigate to.
         this.context.router.push('/');
       });
   }
 
   render() {
     const { post } = this.props;
-    console.log('POST', post)
     if (!post) {
       return <div>Loading....</div>;
     }
