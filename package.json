@@ -93,6 +93,7 @@
     "axios": "^0.13.1",
     "classnames": "^2.2.5",
     "eslint": "^3.10.2",
+    "exports-loader": "^0.6.3",
     "express": "4.14.0",
     "font-awesome": "^4.6.3",
     "immutability-helper": "^2.0.0",

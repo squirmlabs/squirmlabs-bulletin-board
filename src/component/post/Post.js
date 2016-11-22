@@ -7,14 +7,12 @@ import PostStyles from './PostStyles.less';
 import Draggable from 'react-draggable';
 import FlipCard from '../flipcard/FlipCard';
 
-
 class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isFlipped: false,
     }
-
     this.showBack = this.showBack.bind(this);
     this.showFront = this.showFront.bind(this);
     this.handleOnFlip = this.handleOnFlip.bind(this);
@@ -57,7 +55,9 @@ class Post extends Component {
 
   handleOnFlip(flipped) {
     if (flipped) {
-
+      this.setState({
+        sizeWidth: '700px',
+      });
     }
   }
 
@@ -80,24 +80,22 @@ class Post extends Component {
         onDrag={this.handleDrag}
         onStop={this.handleStop}
       >
-        <Col sm={4} sm={4} md={3} lg={3}>
+        <Col sm={4} sm={4} md={3} lg={3} className="content">
           <FlipCard
             disabled={true}
             flipped={this.state.isFlipped}
             onFlip={this.handleOnFlip}
             onKeyDown={this.handleKeyDown}
           >
-            <div className="note front" style={this.style}>
+            <div className="note front yellow-300" style={this.style}>
               <div className="handle">{postResult.title}</div>
               <div className="content" onClick={this.showBack}>{postResult.categories}</div>
             </div>
 
-            <div className="note back blue-200" style={this.style} onClick={this.showFront}>
+            <div className="note back light-blue-100" style={this.style} onClick={this.showFront}>
               <div>Back</div>
             </div>
-
           </FlipCard>
-
         </Col>
       </Draggable>
 

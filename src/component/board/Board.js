@@ -87,11 +87,9 @@ class Board extends Component {
       return display;
     }
     return (
-      <Row className="board">
-        <Col md={12} lg={12} className="no-padding">
-          {this.renderPosts(this.props.posts)}
-        </Col>
-      </Row>
+      <div className="board">
+        {this.renderPosts(this.props.posts)}
+      </div>
     );
   }
 }

@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form'
 import { createPost } from '../../redux/actions/index';
 import { Link } from 'react-router';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
-
-import TextField from 'material-ui/TextField'
+import TextField from '../TextField'
 import asyncValidate from '../utils/asyncValidate'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from '../TextField/styles/getMuiTheme'
+import MuiThemeProvider from '../TextField/styles/MuiThemeProvider'
+import PostsNewStyles from './PostsNew.less';
 
 class PostsNewMui extends Component {
   static contextTypes = {
@@ -20,8 +22,11 @@ class PostsNewMui extends Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
   componentWillMount() {
+    PostsNewStyles.use();
   }
+
   onSubmit(props) {
     this.props.createPost(props)
     .then(() => {
@@ -29,11 +34,21 @@ class PostsNewMui extends Component {
     });
   }
 
+  componentWillUnMount() {
+    PostsNewStyles.unuse();
+  }
+
   renderTextField({ input, label, meta: { touched, error }, ...custom }) {
+    const textFieldStyle = {
+      maxWidth: '700px',
+      width: '100%',
+      margin: '0px auto',
+    }
     return (
-      <TextField hintText={label}
+      <TextField
+        hintText={label}
         floatingLabelText={label}
-        errorText={touched && error}
+        style={textFieldStyle}
         {...input}
         {...custom}
       />
@@ -44,7 +59,7 @@ class PostsNewMui extends Component {
     const { handleSubmit, pristine, reset, submitting, createPost } = this.props;
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <form onSubmit={handleSubmit(this.onSubmit)}>
+        <form onSubmit={handleSubmit(this.onSubmit)} className="newpostform">
           <div>
             <Field name="title" component={this.renderTextField} label="Title" />
           </div>
@@ -52,7 +67,7 @@ class PostsNewMui extends Component {
             <Field name="categories" component={this.renderTextField} label="Note" />
           </div>
           <div>
-            <Link to="/" className="btn btn-warning">Back</Link>
+            <Link to="/" className="btn btn-warning">BACK</Link>
             <button type="submit" className="btn btn-primary" disabled={pristine || submitting}>Add</button>
             <button type="button" className="btn btn-warning" disabled={pristine || submitting} onClick={reset}>Cancel
             </button>
